@@ -7,8 +7,7 @@ export const Home = () => {
   let recipes = useSelector((state) => state.recipes);
   const [searchedRecipe, setSearchedRecipe] = useState("");
   const dispatch = useDispatch();
-  let rec = recipes;
-
+ 
   const searchRecipe = () => {
     console.log("RECIPES BEFORE ", recipes);
     dispatch(resetRecipes());
@@ -56,9 +55,7 @@ export const Home = () => {
           width: "20%",
           mb: 2,
           mt: 3,
-          "&:hover": {
-            bgcolor: " rgb(176, 230, 176); ",
-          },
+          bgcolor: " rgb(176, 230, 176); ",
         }}
       />
       <Button

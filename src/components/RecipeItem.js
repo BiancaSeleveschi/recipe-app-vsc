@@ -9,11 +9,11 @@ import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+// import { red } from "@mui/material/colors";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
+// import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Button, Divider } from "@mui/material";
 
 const ExpandMore = styled((props) => {
@@ -38,7 +38,12 @@ export default function RecipeItem({ recipe }) {
   const visibleIngredients = showAll
     ? ingredientsArray
     : ingredientsArray.slice(0, maxVisibleItems);
-
+  const showMoreButton =
+    ingredientsArray.length > maxVisibleItems ? (
+      <Button onClick={() => setShowAll(!showAll)}>
+        {showAll ? "Show Less" : "Show More"}
+      </Button>
+    ) : null;
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -67,11 +72,9 @@ export default function RecipeItem({ recipe }) {
       cardBackgroundColor = "grey";
   }
   return (
-    <Card
-      sx={{ maxWidth: 345, minHeight: "100%", background: cardBackgroundColor }}
-    >
+    <Card sx={{ maxWidth: 345, background: cardBackgroundColor }}>
       <CardHeader
-        sx={{ height: 55 }}
+        sx={{ height: 60 }}
         avatar={
           <Avatar sx={{ bgcolor: avatarBackgroundColor }} aria-label="recipe">
             {recipe.category[0]}
@@ -86,8 +89,13 @@ export default function RecipeItem({ recipe }) {
         titleTypographyProps={{ fontSize: 16, fontWeight: "bold" || "inherit" }}
         subheader={
           <Typography variant="body2" color="text.secondary">
-            Calories:
-            <strong style={{ fontSize: 14 }}> {recipe.calories}</strong>
+            <div>
+              <span>Calories:</span>
+              <strong style={{ fontSize: 15 }}> {recipe.calories}</strong>
+            </div>
+            <div>
+              <strong style={{ fontSize: 15 }}> {recipe.macronutrients}</strong>
+            </div>
           </Typography>
         }
       />
@@ -98,20 +106,28 @@ export default function RecipeItem({ recipe }) {
         image="/static/images/cards/paella.jpg"
         alt="Paella dish"
       /> */}
+     
       <CardContent
-        sx={{height: 190, overflow: showAll && "auto"  }}
+        sx={{ height: showAll ? "auto" : 180, overflow: showAll && "auto" }}
       >
         <Typography variant="body2" color="text.secondary">
           <ul>
             {visibleIngredients.map((ingredient, index) => (
               <li key={index}>{ingredient.trim()}</li>
             ))}
+            {ingredientsArray.length > maxVisibleItems && !showAll && (
+              <li
+                style={{
+                  listStyle: "none",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  color: "black",
+                }}
+              >
+                .....
+              </li>
+            )}
           </ul>
-          {ingredientsArray.length > maxVisibleItems && (
-            <Button onClick={() => setShowAll(!showAll)}>
-              {showAll ? "Show Less" : "Show More"}
-            </Button>
-          )}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -121,6 +137,11 @@ export default function RecipeItem({ recipe }) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton> */}
+        {ingredientsArray.length > maxVisibleItems && (
+          <Button onClick={() => setShowAll(!showAll)}>
+            {showAll ? "Show Less" : "Show More"}
+          </Button>
+        )}
         <ExpandMore
           style={{ alignSelf: "flex-end", marginBottom: 8, marginRight: 8 }}
           expand={expanded}

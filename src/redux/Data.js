@@ -92,8 +92,7 @@ sare, piper, zeama de lamaie dupa gust`,
   {
     name: "cilli vegetarian",
     calories: 367,
-    ingredients: `ingrediente pentru 2, sau chiar 3 portii:
-- o portie = 500 g
+    ingredients: `ingrediente pentru 2, sau chiar 3 portii:;
 
 1 lingura(15 ml) de ulei de masline;
 1 ceapa mare tocata;
@@ -107,8 +106,10 @@ pudra de chilli - dupa gust si optional;
 1 lingurita de boia dulce;
 Sare și piper după gust;
 1 pahar de apă sau supa de legume;
-ierburi aromatice dupa gust`,
-    description: `mod de preparare:
+ierburi aromatice dupa gust;
+;
+o portie = 500 g`,
+    description: ` 
  Se pregateste din aceasta seara budinca de chia
  ingrediente: 40 g seminte de chia, 40 g fulgi de ovaz, 200 ml lapte de cocos neindulcit(Alpro), 20 g
  cacao pudra

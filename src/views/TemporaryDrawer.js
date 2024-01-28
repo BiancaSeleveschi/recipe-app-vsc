@@ -6,10 +6,10 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
+// import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+// import InboxIcon from "@mui/icons-material/MoveToInbox";
+// import MailIcon from "@mui/icons-material/Mail";
 import { useNavigate } from "react-router-dom";
 
 export default function TemporaryDrawer() {
@@ -28,7 +28,14 @@ export default function TemporaryDrawer() {
       return;
     }
 
+    const isMenuIconClick =
+    event.target.tagName === "BUTTON" && event.target.textContent === "MenuIcon";
+
+  // Open the drawer only if the MenuIcon button is clicked
+  if (isMenuIconClick) {
     setState({ ...state, [anchor]: open });
+  }
+
   };
   const navigateTo = (name) => {
     const path = `/${name.toLowerCase().replace(/\s+/g, "-")}`;
@@ -42,16 +49,17 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "Recipe Form" ].map((text, index) => (
+        {["Home", "Recipe Form"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={() => navigateTo(text)}>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
-      </List>  <Divider />
+      </List>{" "}
+      <Divider />
       <List>
-        {["Breakfast","Lunch", "Dinner", "Snack"].map((text, index) => (
+        {["Breakfast", "Lunch", "Dinner", "Snack"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton onClick={() => navigateTo(text)}>
               <ListItemText primary={text} />
@@ -59,15 +67,6 @@ export default function TemporaryDrawer() {
           </ListItem>
         ))}
       </List>
-      {/* <List>
-        {["Breakfast", "Lunch", "Dinner", "Snack"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText  onClick={() => navigateTo(text)} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
     </Box>
   );
 

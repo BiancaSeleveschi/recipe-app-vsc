@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import RecipeItem from "./RecipeItem";
+ import RecipeItem from "./RecipeItem";
 import { styled } from "@mui/system";
 
 const EventGrid = styled("div")({
@@ -9,8 +8,7 @@ const EventGrid = styled("div")({
   gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
 });
 export const RecipeList = ({recipes}) => {
-  // const recipes = useSelector((state) => state.recipes);
-  return (
+   return (
     <div>
       <EventGrid sx={{ p: 5 }}>
         {recipes.map((recipe, index) => (
